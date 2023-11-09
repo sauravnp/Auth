@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\FrontendController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,12 +15,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
+/*********** start Frontend  ***********/
+Route::get('/',[FrontendController::class, 'index']);
+Route::get('/shop',[FrontendController::class, 'shop']);
+Route::get('/detail',[FrontendController::class, 'detail']);
+Route::get('/contact',[FrontendController::class, 'contact']);
+Route::get('/cart',[FrontendController::class, 'cart']);
+Route::get('/checkout',[FrontendController::class, 'checkout']);
+
+
+/***********end Frontend  ***********/
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    return view('user.dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
